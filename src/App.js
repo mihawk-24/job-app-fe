@@ -1,12 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import {Suspense, lazy} from "react";
+import {Routes, Route} from "react-router-dom";
+import {Spin} from "antd";
+const LandingPage = lazy(()=> import("./components/landingPage/LandingPage"));
 
-function App() {
+
+export default function App() {
   return (
-    <div className="App">
-      Job Application
-    </div>
+    <Suspense fallback={<Spin/>}>
+      <Routes>
+        <Route path="/" element={<LandingPage/>} />
+      </Routes>
+    </Suspense>
   );
 }
-
-export default App;
